@@ -1,0 +1,64 @@
+server:
+  port: 8081
+  http2:
+    enabled: true
+  compression:
+    enabled: true
+    min-response-size: 8192
+    mime-types:
+      - application/json
+      - application/javascript
+      - text/html
+      - text/css
+      - video/mp4
+      - audio/mp4
+
+
+spring:
+  profiles:
+    active: development
+  application:
+    name: Speech To Text Operations
+  jpa:
+    database: postgresql
+    generate-ddl: true
+    show-sql: false
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    properties:
+      hibernate:
+        default_schema: public
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/sttops_api?useSSL=false
+    username: postgres
+    password: 123456
+#    host: localhost
+#    port: 5432
+#    database: sttops_api
+    hikari:
+      default-schema: public
+      pool-name: sttops-db-pool
+  servlet:
+    multipart:
+      enabled: true
+      file-size-threshold: 1KB
+      max-file-size: 100MB
+      max-request-size: 111MB
+
+
+minio:
+  buckert: sttops
+  username: minio
+  password: minio123
+  host: 172.21.0.4
+  port: 9000
+  tls:
+    enabled: false
+
+debug: false
+
+mock:
+  url: http://localhost:8082/api/v1/mock/stt
+
