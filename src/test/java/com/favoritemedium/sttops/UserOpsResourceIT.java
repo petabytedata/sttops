@@ -10,13 +10,16 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.Collections;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import java.util.Arrays;
-
+/**
+ * Integration test case
+ */
 @WebMvcTest(UserOpsResource.class)
 public class UserOpsResourceIT {
 
@@ -29,7 +32,7 @@ public class UserOpsResourceIT {
     @Test
     public void test_get_all_users() throws Exception{
 
-        Mockito.when(userService.findAllUsers()).thenReturn(Arrays.asList(UserDTO.builder()
+        Mockito.when(userService.findAllUsers()).thenReturn(Collections.singletonList(UserDTO.builder()
                 .username("a1").id(1).password("qweqwese").fullName("abc bcc").email("q@q.com").active(true)
                 .build()));
 
