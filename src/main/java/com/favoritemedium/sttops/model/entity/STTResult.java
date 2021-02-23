@@ -5,6 +5,9 @@ import lombok.*;
 import javax.persistence.*;
 import java.io.Serializable;
 
+/**
+ * Speech-To-Text result entity for persisting in DB
+ */
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter(AccessLevel.PUBLIC)

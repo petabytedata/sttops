@@ -11,6 +11,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ *
+ * Web resource contains the endpoints for managing users in our application.
+ */
 @RestController
 @RequestMapping("/api/v1")
 @RequiredArgsConstructor
@@ -19,12 +23,22 @@ public class UserOpsResource {
     @Autowired
     private final UserService userService;
 
-    @PostMapping(path = "/user1", consumes = MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
+    /**
+     * This API register new user in our system, which could later upload and use our Speech-to-Text endpoints
+     * @param userDTO
+     * @return
+     */
+    @PostMapping(path = "/user", consumes = MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> createUser(@RequestBody UserDTO userDTO){
         userService.createUser(userDTO);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+    /**
+     * This API returns all the registered users
+     *
+     * @return
+     */
     @GetMapping(path = "/users", produces=MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getAllUsers(){
         List<UserDTO> dtos = userService.findAllUsers();

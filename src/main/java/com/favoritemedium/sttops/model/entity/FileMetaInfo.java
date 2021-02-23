@@ -7,6 +7,9 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * File metadata infomatin entity for persisting in DB
+ */
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter(AccessLevel.PUBLIC)

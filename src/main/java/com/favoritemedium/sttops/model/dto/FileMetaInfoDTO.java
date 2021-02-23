@@ -2,11 +2,11 @@ package com.favoritemedium.sttops.model.dto;
 
 import lombok.*;
 
-import javax.persistence.*;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
+/**
+ * Data transfer object to send on the wire as response
+ */
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter(AccessLevel.PUBLIC)
@@ -17,7 +17,6 @@ public class FileMetaInfoDTO implements Serializable {
 
     private int id;
     private String fileName;
-
     private UserDTO user;
     private String fromFilePath;
 }

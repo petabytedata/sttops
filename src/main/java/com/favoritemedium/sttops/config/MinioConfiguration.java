@@ -5,6 +5,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * Minio server configuration file
+ */
 @Configuration
 public class MinioConfiguration {
 
@@ -20,6 +23,10 @@ public class MinioConfiguration {
     Boolean isTlsEnabled;
 
     @Bean
+    /**
+     *
+     * Returns minio client for inteactino with minio server
+     */
     public MinioClient getMinioClient() {
         try {
             MinioClient minioClient =

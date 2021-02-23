@@ -20,6 +20,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+/**
+ * Service class responsible for interacting with Speech-To-Text service provider. We intended to use Google APIs, for this.
+ * As I was facing issue with GCP registration, and as an alternative called(as an Hystrix command) mocked service to return
+ * dummy response.
+ */
 @Service
 @RequiredArgsConstructor
 public class STTService {
@@ -33,6 +38,13 @@ public class STTService {
     @Value("${mock.url}")
     String url;
 
+    /**
+     * Calling mocked service to fetch dummy response from mocked upstream service.Here we have another fallback method,
+     * which will be called in case there will be some issue with dependent or upstream service.
+     *
+     * @param data
+     * @return
+     */
     @HystrixCommand(fallbackMethod = "pushEventToKafka")
     public Optional<String> callSTT(byte[] data) {
         Map<?,?> map = restTemplate.getForObject(url, Map.class);
@@ -47,6 +59,14 @@ public class STTService {
     }
 
     //TODO:Dummy method
+
+    /**
+     * Fallback method, which will get called in case callSTT Hystrix command failed to get response from its dependent
+     * service. Here the intention is to make it fault tolerant and resilient with more retries.
+     *
+     * @param data
+     * @return
+     */
     public Optional<String> pushEventToKafka(byte[] data){
         return Optional.of("Attempting second call in 30 seconds");
     }
@@ -56,6 +76,12 @@ public class STTService {
     }
 
     //TODO:Not getting used
+
+    /**
+     * Copied as is from Google samples to call GCP's Speech-To-Text service.
+     * @return
+     * @throws Exception
+     */
     public List<String> recognize()throws Exception{
 
         // Instantiates a client
@@ -93,4 +119,3 @@ public class STTService {
         return responses;
     }
 }
-

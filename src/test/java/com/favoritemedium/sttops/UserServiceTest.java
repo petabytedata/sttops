@@ -13,7 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 
-
+/**
+ * JUnit test case
+ */
 public class UserServiceTest extends BaseTest{
 
     @Autowired

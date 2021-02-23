@@ -3,9 +3,11 @@ package com.favoritemedium.sttops.model.dto;
 import com.favoritemedium.sttops.model.entity.FileMetaInfo;
 import lombok.*;
 
-import javax.persistence.*;
 import java.io.Serializable;
 
+/**
+ * Data transfer object to send on the wire as response
+ */
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter(AccessLevel.PUBLIC)
