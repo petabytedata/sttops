@@ -13,7 +13,6 @@ server:
       - video/mp4
       - audio/mp4
 
-
 spring:
   profiles:
     active: development
@@ -47,12 +46,11 @@ spring:
       max-file-size: 100MB
       max-request-size: 111MB
 
-
 minio:
   buckert: sttops
   username: minio
   password: minio123
-  host: 172.21.0.4
+  host: 172.21.0.5
   port: 9000
   tls:
     enabled: false
@@ -61,4 +59,3 @@ debug: false
 
 mock:
   url: http://localhost:8082/api/v1/mock/stt
-
